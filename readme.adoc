@@ -1,0 +1,12 @@
+
+== Überblick
+
+Dieser Teil stellt verschiedene Möglichkeiten, welche Möglichkeiten es in Rust gibt, um Multithreading zu ermöglichen.
+
+Eine Einführung gibt es hier: https://doc.rust-lang.org/book/ch16-00-concurrency.html[Multithreading]
+
+Hier möchten wir und jedoch gleich dem Thema zuwenden, wie man in untergeordneten Threads mit begrenzer Lebenszeit auf lokale Variablen zugreifen kann.
+
+Hierzu schauen wir uns das Beispiel `scoped-threads` an.
+
+Erstelle hierzu ein Programm, welches mit `thread::scope` einen thread spawn macht.
