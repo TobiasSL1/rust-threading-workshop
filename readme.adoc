@@ -12,3 +12,50 @@ Hier möchten wir und jedoch gleich dem Thema zuwenden, wie man in untergeordnet
 Hierzu schauen wir uns das Beispiel `scoped-threads` an.
 
 Erstelle hierzu ein Programm, welches mit `thread::scope` einen thread spawn macht.
+
+== Zugriff auf statische 'Items'
+
+Wir reden hier vom 'storage class spezifier'.
+Die Werte können auch als `mut` deklariert werden. Rust schränkt dann den Zugriff auf Werte
+https://doc.rust-lang.org/reference/items/static-items.html#mutable-statics
+
+Welche Möglichkeiten gibt es für den Zugriff und die Initialisierung?
+
+=== OnceCell
+
+Mit der OnceCell können nur lokale Variablen initialisiert werden, da OnceCell !Sync ist.
+https://doc.rust-lang.org/std/cell/struct.OnceCell.html
+Scheibe einen Test dazu.
+
+== OnceLock
+
+Mit OnceLock können statische Variablen threadsicher initialisiert werden.
+Schreibe einen Test, der 2 threads started, wartet und dann den Wert prüft
+
+Darüber hinaus gibt es noch andere Cell-Typen, Cell, RefCell, https://doc.rust-lang.org/std/cell/
+
+[Note]
+====
+Optional: Wer weiter vertiefen möchte, schaut sich die UnsafeCell noch an: https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html?
+====
+
+
+
+== Weiter struct zur Initialisierung 
+Warum so viele?
+
+* std::cell::OnceCell
+* once_cell::unsync::OnceCell?
+* once_cell::sync::Lazy
+
+Most of this crate’s functionality is available in std starting with Rust 1.70. See std::cell::OnceCell and std::sync::OnceLock.
+
+[Note]
+====
+Wenn man no_std verwenden muss, kann man die Typen std::sync::OnceLock nicht verwenden, da bleibt nur die Alternative https://docs.rs/once_cell/latest/once_cell/#faq
+====
+
+https://docs.rs/once_cell/latest/once_cell/sync/struct.Lazy.html
+https://docs.rs/once_cell/latest/once_cell/unsync/struct.Lazy.html
+
+Ebenso, lazy_static crate und das macro lazy_static!
