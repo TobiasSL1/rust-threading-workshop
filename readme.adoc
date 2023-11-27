@@ -5,22 +5,33 @@ Dieser Teil stellt verschiedene Möglichkeiten für Multithreading in Rust vor.
 
 Benötigt wird nur die `std`. Eine Einführung gibt es hier: https://doc.rust-lang.org/book/ch16-00-concurrency.html[Multithreading]
 
+Synchronisationsprimitiven sind im Modul https://doc.rust-lang.org/std/sync/#structs[std::sync] zu finden, welche wir uns hier anschauen.
 
 == Übung scoped-threads
-Hier möchten wir und jedoch gleich dem Thema zuwenden, wie man in untergeordneten Threads mit begrenzer Lebenszeit auf lokale Variablen zugreifen kann.
+Hier möchten wir und gleich dem Thema zuwenden, wie man in untergeordneten Threads mit begrenzer Lebenszeit auf lokale Variablen zugreifen kann.
 
 Hierzu schauen wir uns das Beispiel `scoped-threads` an.
 
 Erstelle hierzu ein Programm, welches mit `thread::scope` einen thread spawn macht.
 
-== Zugriff auf statische 'Items'
+== Zugriff auf statische 'Werte'
 
-Wir reden hier vom 'storage class spezifier'.
+Wir reden hier vom 'storage class spezifier' static.
 Die Werte können auch als `mut` deklariert werden. Rust schränkt dann den Zugriff auf Werte
 https://doc.rust-lang.org/reference/items/static-items.html#mutable-statics
 
 Welche Möglichkeiten gibt es für den Zugriff und die Initialisierung?
 
+== Once
+
+https://doc.rust-lang.org/std/sync/struct.Once.html[Once] eignet sich, wenn man z.B. eine Bibliothek, z.B. ein FFI schreibt, und sicherstellen will, dass Initialisierungscode nur genau einmal druchlaufen wird, egal von wie vielen Threads aus die Bibliothek verwendet wird, also man keine Kontrolle über die Aufrufer hat.
+Schreibe ein Test, welcher 2 threads startet, und call_once zweimal aufruft. Prüfe, ob die Initialisierungsmethode nur eimal aufgeführt wird
+[Note] 
+====
+Gezielt kann an einen einzeln Test mit println! Ausgabe so starten:
+
+ cargo test once_lambda_is_called_only_once -- --show-output
+====
 === OnceCell
 
 Mit der OnceCell können nur lokale Variablen initialisiert werden, da OnceCell !Sync ist.
@@ -32,13 +43,12 @@ Scheibe einen Test dazu.
 Mit OnceLock können statische Variablen threadsicher initialisiert werden.
 Schreibe einen Test, der 2 threads started, wartet und dann den Wert prüft
 
-Darüber hinaus gibt es noch andere Cell-Typen, Cell, RefCell, https://doc.rust-lang.org/std/cell/
+Darüber hinaus gibt es noch andere Cell-Typen, Cell, RefCell, https://doc.rust-lang.org/std/cell/[Cell]
 
 [Note]
 ====
-Optional: Wer weiter vertiefen möchte, schaut sich die UnsafeCell noch an: https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html?
+Optional: Wer weiter vertiefen möchte, schaut sich die UnsafeCell noch an: https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html
 ====
-
 
 
 == Weiter struct zur Initialisierung 

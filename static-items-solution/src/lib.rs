@@ -1,4 +1,4 @@
-use std::{sync::OnceLock, thread};
+use std::{sync::{OnceLock, Once}, thread};
 
 #[cfg(test)]
 
@@ -8,6 +8,23 @@ static mut VALUE: i32 = 0;
 fn read_static() {
     assert_eq!(unsafe {VALUE}, 0);
 }
+
+
+#[test]
+fn once_lambda_is_called_only_once()
+{
+    static ONCE : Once = Once::new();
+    
+    let t1 = thread::spawn(init);
+    let t2 = thread::spawn(init);
+
+    fn init()
+    {
+        ONCE.call_once(|| print!("Called only once"));
+    }
+    [t1, t2].into_iter().for_each(|t| t.join().unwrap());
+}
+
 
 #[test]
 fn oncecell_should_initialize_cell_once()  //This sample demonstates one-time initialization of a local variable
