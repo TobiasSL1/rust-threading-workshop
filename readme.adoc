@@ -1,5 +1,7 @@
 
-= Überblick
+= Multithreading & Synchronisation
+
+== Überblick
 
 Dieser Teil stellt verschiedene Möglichkeiten für Multithreading in Rust vor.
 
@@ -85,10 +87,12 @@ Schreibe ein Test, welcher mehrere Threads erzeugt, und einen gemeinsamen Wert �
 
 [Note]
 ====
-Verwende https://doc.rust-lang.org/std/ops/struct.Range.html[Ranges] (1..5) um über die Zahlen 1 bis 4 zu iterieren.
+Verwende https://doc.rust-lang.org/std/ops/struct.Range.html[Ranges] (0u8..5u8) um über die Zahlen 0 bis 4 zu iterieren.
 Erzeuge je einen Thread pro Zahl.
 Jeder Thread fügt einen Buchstaben zu dem gemeinsam String hinzu.
-Thread 1: a, Thread 2: b...
+
+* Thread 0: 'a', 
+* Thread 1: 'b'...
 ====
 
 == Optionale Übung: Wechselseitiger Ausschluss Mutex
