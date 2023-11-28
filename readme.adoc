@@ -90,3 +90,9 @@ Erzeuge je einen Thread pro Zahl.
 Jeder Thread fügt einen Buchstaben zu dem gemeinsam String hinzu.
 Thread 1: a, Thread 2: b...
 ====
+
+== Optionale Übung: Wechselseitiger Ausschluss Mutex
+
+Ähnlich wie RwLock bietet std::sync::Mutex den wechselseitigen Ausschluss, unterscheidet jedoch nicht zwischen Lesen und Schreiben.
+
+Ersetze in der vorigen Übung RwLock durch Mutex.
