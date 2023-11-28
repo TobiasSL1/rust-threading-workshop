@@ -69,3 +69,24 @@ https://docs.rs/once_cell/latest/once_cell/sync/struct.Lazy.html
 https://docs.rs/once_cell/latest/once_cell/unsync/struct.Lazy.html
 
 Ebenso, lazy_static crate und das macro lazy_static!
+
+== Embedded Rust und no_std
+
+Wer Rust auf embbeded systems einsetzen möchte, z.B. bare Metal, d.h. ohne Betriebsystem, muss auf std verzichten.
+Wer mehr erfahren möchte liest hier nach:
+
+* https://docs.rust-embedded.org/book/intro/index.html[embedded rust]
+* https://tweedegolf.nl/en/blog/96/why-rust-is-a-great-fit-for-embedded-software-2023-update[why is rust good for embedded software] enthält auch Links auf Hersteller, die Rust support anbieten.
+
+== Lesen und Schreiben
+
+Wenn man lesenden und schreibenden Zugriff von mehreren Threads auf einen Wert braucht, kann man https://doc.rust-lang.org/std/sync/struct.RwLock.html[`std::sync::RwLock`] verwenden:
+Schreibe ein Test, welcher mehrere Threads erzeugt, und einen gemeinsamen Wert ändert.
+
+[Note]
+====
+Verwende https://doc.rust-lang.org/std/ops/struct.Range.html[Ranges] (1..5) um über die Zahlen 1 bis 4 zu iterieren.
+Erzeuge je einen Thread pro Zahl.
+Jeder Thread fügt einen Buchstaben zu dem gemeinsam String hinzu.
+Thread 1: a, Thread 2: b...
+====
