@@ -1,0 +1,43 @@
+
+= Rust Seminar ESE 2023
+
+Mo, 04.12.2023, Tobias Schmitt-Lechner, andrena objects
+
+== Installationshinweise
+
+. On VMWare (optional, my configuration is kubuntu 22.04 ): +
+`cd ~/Desktop/vmware-tools-distro` +
+`sudo ./vmware-install.pl`
+
+. Install Chrome (optional, but faster) +
+`wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb` +
+`sudo dpkg -i google-chrome-stable_current_amd64.deb`
+
+. CLion oder Intellij oder Visual Studio Code (hier) +
+`sudo snap install --classic code`
+
+. Install Visual Studio code extension +
+`code --install-extension rust-lang.rust-analyzer`
+
+. Rust mit Rustup +
+`sudo apt-get install curl`
++
+[NOTE]
+====
+do not use `sudo snap install curl`
+====
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` +
+`source "$HOME/.cargo/env"`
+
+. Rust Linker installieren: (sonst kommt Fehler "error: linker `cc` not found" kommt) +
+`sudo apt update && sudo apt install build-essential`
+
+. OpenSSL (sonst geht z.B. httpc-test nicht) +
+`sudo apt install pkg-config` +
+`sudo apt install libssl-dev`
+
+. Check the installation +
+`cd ~` +
+`cargo new hello-world` +
+`cd hello-world` +
+`cargo run`

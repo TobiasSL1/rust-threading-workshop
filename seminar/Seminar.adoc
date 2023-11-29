@@ -1,0 +1,228 @@
+
+
+
+ifndef::backend-revealjs[:source-highlighter: rouge]
+:rouge-style: monokai
+
+= Axum Tutorial
+
+== Einführung
+
+Axum latest (0.7)
+
+* routes
+* extractors
+* responses
+
+https://docs.rs/axum/latest/axum/
+https://tokio.rs/tokio/tutorial/hello-tokio
+
+== Loslegen
+
+Tokio hinzufügen hier ohne "full" Features, nur die nötigsten
+
+Heute aktuell Axum 0.62
+
+[source,bash]
+----
+cargo new hello-world
+cd hello-world
+cargo add tokio -F rt-multi-thread -F rt -F macros
+cargo add axum
+----
+
+File src/main.rs
+[source,rust]
+----
+include::hello-world/src/main.rs[]
+----
+
+== Lets switch to english!
+
+From now on our seminar is in english :-)
+
+== Example: fast-feedback, have a fast feedback loop
+. http test utilities +
+https://crates.io/crates/httpc-test +
+`cargo add httpc-test`
+
+. cargo watch +
+https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
+`cargo install cargo-watch` +
+
+
+. Read the organisation of integration tests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
+
+. Start two terminals: 
++
+--
+[source,sh]
+----
+include::fast-feedback/watchserver.sh[]
+----
+and in the other terminal:
+[source,sh]
+----
+include::fast-feedback/watchtest.sh[]
+----
+Now you are ready for fast iterations.
+--
+
+== The http crate
+
+The http crate https://docs.rs/http/latest/http/ is a commonly used library
+that includes definitions for 
+
+* HeaderValue
+* names for headers, for example `http::header::AUTHORIZATION`
+
+be sure to use the correct crate versions: 0.2, not 1.0.0
+`cargo add http@0.2`
+
+== Middleware for error handling
+
+Create a new project errorhandling-middleware
+In this exercise we will handle a async timeout of the handler function
+
+first add tower, include "timeout" feature
+[source]
+cargo add tower -F timeout
+
+Axum documentation:
+https://docs.rs/axum/latest/axum/error_handling/index.html
+
+Observe, what kind of timeouts are handled.
+
+Further resources:
+https://github.com/josecelano/axum-request-timeout
+
+== Middleware mit tower
+
+Middleware basiert auf :
+https://docs.rs/tower/latest/tower/
+
+Eine Middleware ist aufgebaut aus einem oder mehreren Layern.
+....
+Layer 1
+   Layer 2
+      Service
+   Layer 2
+Layer 1
+....
+Damit die Layer in der "erwarteten" Reihenfolge ausgeführt werden,
+gibt es den ServiceBuilder.
+
+Mit dem ServiceBuilder können die Layer in der Reihenfolge Layer 1, Layer 2, Service
+hinzugefügt werden.
+Ein Layer ist im Prinzip eine Funktion Service -> Service.
+Ein Layer kann vor dem Aufruf des inneren Layers Verarbeitung durchführen oder dannach.
+Vorher kann z.B. mit MapRequest der Request verändert werden, oder nacher mit MapResonse.
+
+Das Verständnis von `tower` ist so wichtig, weil diese Bibliothek sehr vielfältig eingesetzt wird:
+* in Implementierungen in verschiedenen Rollen
+** Server
+** Client
+* mit verschiedenen Protokollen, z.B.
+** http
+** grpc
+
+Axum verwendet Tower als Middleware.
+
+Introduction: 
+https://docs.rs/axum/latest/axum/middleware/index.html
+
+== Middleware Request Mapping mit MapRequest
+
+....
+Layer 1 (hier request mappping)
+map_request
+   Service
+Layer 1
+....
+
+map_request mappt den Request, den Layer 1 bekommt auf einen modifizierten Wert und leitet ihn an den nächsten Layer oder den Service weiter.
+
+[source,rs]
+----
+    let sb = ServiceBuilder::new()
+        .map_request(|r: usize| r * 5)
+        .service(svc);
+----
+
+== Middleware Response Mapping mit MapRepsonse
+
+....
+Layer 1 (hier repsonse mapping)
+   Service
+map_response
+Layer 1
+....
+
+map_response
+
+[source,rs]
+----
+    let sb = ServiceBuilder::new()
+        .map_response(|r: i32| r * 5)
+        .service(svc);
+----
+
+Layer 1 leitet den eingehenden Request direkt weiter und transformiert den Response des nächsten Layer oder Services.
+
+== Exercise: Passing state from middleware to handlers:
+
+https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers
+
+For the server, extract the authorization header value and print it to console.
+For the client, we will use the `reqwest` library with blocking requests, with 
+
+`cargo add reqwest -F blocking`
+
+[NOTE] 
+If you forget to add the extension, you wil get a runtime error
+
+== OpenAPI & Swagger - Ein UI für unser Web API
+
+Es ist oft hilfreich, wenn die Web API eine Möglichkeit bietet, die Endpunkte, z.B. auch die post Endpunkte vom Browser aus aufzurufen. Häufig wird hierfür Swagger verwendet
+
+=== OpenAPI - utoipa hinzufügen
+[source]
+----
+cargo add utoipa@4.1 -F axum_extras
+cargo add utoipa-swagger-ui@4.0 -F axum
+cargo add serde -F derive
+----
+
+[Note]
+====
+Die Versionsnummern müsssen passen, die Version 5.0 ist noch zu neu für utoipa-swagger-ui
+====
+
+https://crates.io/crates/utoipa-swagger-ui
+
+https://github.com/juhaku/utoipa/blob/master/examples/todo-axum/src/main.rs
+
+=== OpenAPI - Initialisierung
+
+[source,rust]
+----
+let app = Router::new()
+    .merge(SwaggerUi::new("/swagger-ui")
+        .url("/api-docs/openapi.json", ApiDoc::openapi()));
+----
+
+=== OpenAPI 
+
+Jetzt wollen wir das UI ausprobieren:
+
+http://localhost:3000/swagger-ui/[UI]
+
+http://localhost:3000/api-docs/openapi.json[OpenAPI Json]
+
+
+[appendix]
+//include::installation.adoc[]
+
+[bibliography]
+== Bibliography
+* [[[jc]]] Jeremy Chone: Video Axum Web Application Framework: https://www.youtube.com/watch?v=XZtlD_m59sM&list=PL7r-PXl6ZPcCIOFaL7nVHXZvBmHNhrh_Q

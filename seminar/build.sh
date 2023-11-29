@@ -1,0 +1,1 @@
+asciidoctor Seminar.adoc
