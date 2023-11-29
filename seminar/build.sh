@@ -1,1 +1,1 @@
-asciidoctor Seminar.adoc
+asciidoctor readme.adoc
