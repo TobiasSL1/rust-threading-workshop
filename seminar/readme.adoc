@@ -34,7 +34,7 @@ cargo add axum
 File src/main.rs
 [source,rust]
 ----
-include::hello-world/src/main.rs[]
+include::0-hello-world/src/main.rs[]
 ----
 
 == Lets switch to english!
@@ -58,12 +58,12 @@ https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
 --
 [source,sh]
 ----
-include::fast-feedback/watchserver.sh[]
+include::1-fast-feedback/watchserver.sh[]
 ----
 and in the other terminal:
 [source,sh]
 ----
-include::fast-feedback/watchtest.sh[]
+include::1-fast-feedback/watchtest.sh[]
 ----
 Now you are ready for fast iterations.
 --
