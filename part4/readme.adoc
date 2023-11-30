@@ -100,3 +100,10 @@ Jeder Thread fügt einen Buchstaben zu dem gemeinsam String hinzu.
 Ähnlich wie RwLock bietet std::sync::Mutex den wechselseitigen Ausschluss, unterscheidet jedoch nicht zwischen Lesen und Schreiben.
 
 Ersetze in der vorigen Übung RwLock durch Mutex.
+
+== Kommunikation mi Channels (sync::mpsc)
+
+Anstatt sich über shared memory auszutauschen, kann man Nachrichten verschicken. In dieser Übung bauen wir einen Nachrichtenkanal auf.
+Die Grundlagen haben wir hier: https://doc.rust-lang.org/book/ch16-02-message-passing.html
+
+
