@@ -44,17 +44,7 @@ Scheibe einen Test dazu.
 
 Mit OnceLock können statische Variablen threadsicher initialisiert werden.
 Schreibe einen Test, der 2 threads started, wartet und dann den Wert prüft
-
-Darüber hinaus gibt es noch andere Cell-Typen, Cell, RefCell, https://doc.rust-lang.org/std/cell/[Cell]
-
-[Note]
-====
-Optional: Wer weiter vertiefen möchte, schaut sich die UnsafeCell noch an: https://doc.rust-lang.org/std/cell/struct.UnsafeCell.html
-====
-
-
-== Weiter struct zur Initialisierung 
-Warum so viele?
+let
 
 * std::cell::OnceCell
 * once_cell::unsync::OnceCell?
@@ -101,9 +91,16 @@ Jeder Thread fügt einen Buchstaben zu dem gemeinsam String hinzu.
 
 Ersetze in der vorigen Übung RwLock durch Mutex.
 
-== Kommunikation mi Channels (sync::mpsc)
+== Kommunikation mit Channels (sync::mpsc)
 
 Anstatt sich über shared memory auszutauschen, kann man Nachrichten verschicken. In dieser Übung bauen wir einen Nachrichtenkanal auf.
 Die Grundlagen haben wir hier: https://doc.rust-lang.org/book/ch16-02-message-passing.html
 
+== Threads aufwecken mit sync::CondVar
 
+Falls ein Thread auf etwas warten muss, was z.B. über ein Mutex synchroniert wird, eigenet sich einen CondVar. 
+Sie wird überlicherweise als Paar (Mutex, CondVar) verwendet. Die CondVar gibt währed der Wartezeit den Mutex frei, und fordert ihn vor der Rückkehr wieder an.
+
+https://doc.rust-lang.org/std/sync/struct.Condvar.html#
+
+Scheibe ein Beispiel hierzu.
