@@ -20,7 +20,6 @@ impl Greeter for MyGreeter {
 
         let reply = hello_world::HelloReply {
             message: format!("Hello {}!", request.into_inner().name).into(), // We must use .into_inner() as the fields of gRPC requests and responses are private
-            x: 1,
         };
 
         Ok(Response::new(reply)) // Send back our formatted greeting

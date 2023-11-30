@@ -14,5 +14,4 @@ message HelloRequest {
 message HelloReply {
     // Reply contains the greeting message
     string message = 1;
-    int32 x = 2;
 }
