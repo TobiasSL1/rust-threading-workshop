@@ -219,6 +219,41 @@ http://localhost:3000/swagger-ui/[UI]
 
 http://localhost:3000/api-docs/openapi.json[OpenAPI Json]
 
+== GRPC
+
+Das Erstellen der Metainformationen für Endpunkte mit OpenAPI war etwas Mehrarbeit. Wir schauen uns nun GRPC für die Inter-Service Kommunikation.
+
+=== Tonic
+
+Hierfür verwenden wir Tonic
+https://github.com/hyperium/tonic
+und schreiben gleich ein Beispiel.
+
+=== Tonic - Installation Linux
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y protobuf-compiler libprotobuf-dev
+
+=== Tonic - Hello World
+
+Wir starten hier:
+https://github.com/hyperium/tonic/blob/master/examples/helloworld-tutorial.md
+
+
+[source]
+----
+cargo add prost tonic
+cargo add --build tonic-build
+----
+
+Vorarbeit 
+(sollte schon erledigt sein): Rust analyser konfigurieren:
+`"rust-analyzer.cargo.buildScripts.enable": true`
+
+Am Ende können wir den Server laufen lassen
+`cargo run --bin helloworld-server`
+
+
 
 [appendix]
 //include::installation.adoc[]
