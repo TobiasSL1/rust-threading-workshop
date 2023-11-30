@@ -4,9 +4,9 @@ use std::thread;
 fn main() {
    let ( tx, rx) = mpsc::channel::<String>();
 
-   let tx1 = tx.clone();
-   thread::spawn(move || {
-      tx1.send(String::from("from thread 1"))
+   thread::spawn({
+      let tx1 = tx.clone();
+      move || tx1.send(String::from("from thread 1"))
    });
 
    thread::spawn(move || {
