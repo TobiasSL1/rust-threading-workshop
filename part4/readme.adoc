@@ -10,7 +10,7 @@ Benötigt wird nur die `std`. Eine Einführung gibt es hier: https://doc.rust-la
 Synchronisationsprimitiven sind im Modul https://doc.rust-lang.org/std/sync/#structs[std::sync] zu finden, welche wir uns hier anschauen.
 
 == Übung scoped-threads
-Hier möchten wir und gleich dem Thema zuwenden, wie man in untergeordneten Threads mit begrenzer Lebenszeit auf lokale Variablen zugreifen kann.
+Hier möchten wir und gleich dem Thema zuwenden, wie man in untergeordneten Threads mit begrenzter Lebenszeit auf lokale Variablen zugreifen kann.
 
 Hierzu schauen wir uns das Beispiel `scoped-threads` an.
 
@@ -19,7 +19,7 @@ Erstelle hierzu ein Programm, welches mit `thread::scope` einen thread spawn mac
 == Zugriff auf statische 'Werte'
 
 Wir reden hier vom 'storage class spezifier' static.
-Die Werte können auch als `mut` deklariert werden. Rust schränkt dann den Zugriff auf Werte
+Die Werte können auch als `mut` deklariert werden. Rust beschränkt dann den Zugriff auf die Werte
 https://doc.rust-lang.org/reference/items/static-items.html#mutable-statics
 
 Welche Möglichkeiten gibt es für den Zugriff und die Initialisierung?
@@ -36,7 +36,7 @@ Gezielt kann an einen einzeln Test mit println! Ausgabe so starten:
 ====
 === OnceCell
 
-Mit der OnceCell können nur lokale Variablen initialisiert werden, da OnceCell !Sync ist.
+Mit der OnceCell können keine statischen Variablen initialisiert (aber z.B. lokale) werden, da OnceCell !Sync ist.
 https://doc.rust-lang.org/std/cell/struct.OnceCell.html
 Scheibe einen Test dazu.
 
@@ -68,7 +68,7 @@ Wer Rust auf embbeded systems einsetzen möchte, z.B. bare Metal, d.h. ohne Betr
 Wer mehr erfahren möchte liest hier nach:
 
 * https://docs.rust-embedded.org/book/intro/index.html[embedded rust]
-* https://tweedegolf.nl/en/blog/96/why-rust-is-a-great-fit-for-embedded-software-2023-update[why is rust good for embedded software] enthält auch Links auf Hersteller, die Rust support anbieten.
+* https://tweedegolf.nl/en/blog/96/why-rust-is-a-great-fit-for-embedded-software-2023-update[why is rust good for embedded software] enthält auch Links auf Hersteller, die Rust Support anbieten.
 
 == Lesen und Schreiben
 
@@ -93,7 +93,7 @@ Ersetze in der vorigen Übung RwLock durch Mutex.
 
 == Kommunikation mit Channels (sync::mpsc)
 
-Anstatt sich über shared memory auszutauschen, kann man Nachrichten verschicken. In dieser Übung bauen wir einen Nachrichtenkanal auf.
+Anstatt sich über shared memory auszutauschen, kann man Nachrichten zwischen Threads verschicken. In dieser Übung bauen wir einen Nachrichtenkanal auf.
 Die Grundlagen haben wir hier: https://doc.rust-lang.org/book/ch16-02-message-passing.html
 
 == Threads aufwecken mit sync::CondVar
@@ -107,7 +107,15 @@ Scheibe ein Beispiel hierzu.
 
 == Parallelisierung mit rayon
 
-Wenn man viele CPU intensive operationen parallelisieren möchte, kann man diese mit https://docs.rs/rayon/latest/rayon/ tun.
+Wenn man viele CPU intensive Operationen parallelisieren möchte, kann man diese mit https://docs.rs/rayon/latest/rayon/ tun.
 
-Schreibe eine Methode die die Bits eines u32 (bit-reversed) umdreht, [0] <-> [31], [1] <-> [30], usw. Bitte nicht so effizient :-)
+Schreibe eine Methode welche die Bits eines u32 (bit-reversed) umdreht, [0] <-> [31], [1] <-> [30], usw. Bitte nicht so effizient :-)
 Es soll eine Liste mit Zahlen parallelisiert verarbeitet werden.
+
+== Geschafft
+
+Nun haben Sie etwas Übung mit Rust, viel Spass beim Entwickeln
+
+Kontakt: 
+
+* https://www.linkedin.com/in/tobias-schmitt-lechner/
