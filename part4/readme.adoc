@@ -112,6 +112,13 @@ Wenn man viele CPU intensive Operationen parallelisieren möchte, kann man diese
 Schreibe eine Methode welche die Bits eines u32 (bit-reversed) umdreht, [0] <-> [31], [1] <-> [30], usw. Bitte nicht so effizient :-)
 Es soll eine Liste mit Zahlen parallelisiert verarbeitet werden.
 
+== Weak - References
+
+Um Zyklen in Datenstrukturen aufzulösen, die sich nicht mehr droppen lassen eignet sich die struct std::sync::Weak.
+https://doc.rust-lang.org/std/sync/struct.Weak.html#
+
+Erstelle einen kleinen Test. Verwende Funktionen wie `Arc::downgrade` und `Weak::upgrade`
+
 == Geschafft
 
 Nun haben Sie etwas Übung mit Rust, viel Spass beim Entwickeln
