@@ -104,3 +104,10 @@ Sie wird überlicherweise als Paar (Mutex, CondVar) verwendet. Die CondVar gibt 
 https://doc.rust-lang.org/std/sync/struct.Condvar.html#
 
 Scheibe ein Beispiel hierzu.
+
+== Parallelisierung mit rayon
+
+Wenn man viele CPU intensive operationen parallelisieren möchte, kann man diese mit https://docs.rs/rayon/latest/rayon/ tun.
+
+Schreibe eine Methode die die Bits eines u32 (bit-reversed) umdreht, [0] <-> [31], [1] <-> [30], usw. Bitte nicht so effizient :-)
+Es soll eine Liste mit Zahlen parallelisiert verarbeitet werden.
