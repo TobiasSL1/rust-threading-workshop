@@ -9,5 +9,5 @@ fn main() {
             str += "."
         });
     });
-    println!("Hello, world {} !", str);
+    println!("Hello world, {} !", str);
 }
