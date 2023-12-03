@@ -49,14 +49,14 @@ include::0-hello-world/src/main.rs[]
 . http test utilities +
 https://crates.io/crates/httpc-test +
 `cargo add httpc-test` + 
-oder mit Request +
+oder mit Reqwest +
 `cargo add reqwest`
 
 . cargo watch +
 https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
 `cargo install cargo-watch` +
 
-. Lies die organisation von Integrationstests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
+. Lies die Organisation von Integrationstests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
 
 . Öffne zwei Terminals: 
 +
@@ -70,7 +70,7 @@ and in the other terminal:
 ----
 include::1-fast-feedback/watchtest.sh[]
 ----
-Now you are ready for fast iterations.
+Jetzt bist du bereit für schnelle Iterationen.
 --
 
 == Die http crate
@@ -178,8 +178,8 @@ Layer 1 leitet den eingehenden Request direkt weiter und transformiert den Respo
 
 https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers
 
-Für den Server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console
-Für den Client, verwenden wir die `request` crate mit Blocking requests.
+Für den Server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console.
+Für den Client, verwenden wir die `reqwest` crate mit Blocking requests.
 
 `cargo add reqwest -F blocking`
 
