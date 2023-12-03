@@ -4,18 +4,26 @@
 ifndef::backend-revealjs[:source-highlighter: rouge]
 :rouge-style: monokai
 
+ifdef::backend-revealjs[:source-highlighter: highlight.js]
+:revealjs_theme: white 
+:revealjs_transition: none
+
+
+
 = Axum Tutorial
 
 == Einführung
 
-Axum latest (0.7)
+Axum 0.62
 
 * routes
 * extractors
 * responses
 
-https://docs.rs/axum/latest/axum/
-https://tokio.rs/tokio/tutorial/hello-tokio
+Links
+
+* https://docs.rs/axum/latest/axum/
+* https://tokio.rs/tokio/tutorial/hello-tokio
 
 == Loslegen
 
@@ -37,15 +45,16 @@ File src/main.rs
 include::0-hello-world/src/main.rs[]
 ----
 
-== Example: fast-feedback, have a fast feedback loop
+== Beispiel fast-feedback, eine schnelle Feedback-Schleife
 . http test utilities +
 https://crates.io/crates/httpc-test +
-`cargo add httpc-test`
+`cargo add httpc-test` + 
+oder mit Request +
+`cargo add reqwest`
 
 . cargo watch +
 https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
 `cargo install cargo-watch` +
-
 
 . Lies die organisation von Integrationstests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
 
@@ -66,18 +75,18 @@ Now you are ready for fast iterations.
 
 == Die http crate
 
-Die http crate https://docs.rs/http/latest/http/ is eine grundlegende crate für  
+Die http crate https://docs.rs/http/latest/http/ ist eine grundlegende crate für  
 
 * HeaderValue
-* Namem für Header, z.B. `http::header::AUTHORIZATION`
+* Namen für Header, z.B. `http::header::AUTHORIZATION`
 
 Verwende die richtige Version: 0.2, nicht 1.0.0
 `cargo add http@0.2`
 
 == Middleware zur Fehlerbehandlung
 
-Erzeuge eine neues Projekt errorhandling-middleware
-In dieser Übung werden wir den asynchronen timeout einer Handerfunktion behandeln.
+Erzeuge ein neues Projekt errorhandling-middleware.
+In dieser Übung werden wir den asynchronen Timeout einer Handerfunktion behandeln.
 
 Zuerst fügen wir tower mit dem "timeout" Feature hinzu:
 [source]
@@ -93,7 +102,7 @@ https://github.com/josecelano/axum-request-timeout
 
 == Middleware mit tower
 
-Middleware basiert auf :
+Middleware basiert auf:
 https://docs.rs/tower/latest/tower/
 
 Eine Middleware ist aufgebaut aus einem oder mehreren Layern.
@@ -114,6 +123,7 @@ Ein Layer kann vor dem Aufruf des inneren Layers Verarbeitung durchführen oder 
 Vorher kann z.B. mit MapRequest der Request verändert werden, oder nacher mit MapResonse.
 
 Das Verständnis von `tower` ist so wichtig, weil diese Bibliothek sehr vielfältig eingesetzt wird:
+
 * in Implementierungen in verschiedenen Rollen
 ** Server
 ** Client
@@ -164,12 +174,12 @@ map_response
 
 Layer 1 leitet den eingehenden Request direkt weiter und transformiert den Response des nächsten Layer oder Services.
 
-== Übung: State von middleware an die Handler übergeben
+== Übung: State von Middleware an die Handler übergeben
 
 https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers
 
-Für den server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console
-Für den Client, verwenden wir die `request` crate mit Blocking requests, das ist etwas einfacher.
+Für den Server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console
+Für den Client, verwenden wir die `request` crate mit Blocking requests.
 
 `cargo add reqwest -F blocking`
 
