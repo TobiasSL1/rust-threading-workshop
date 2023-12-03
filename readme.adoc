@@ -1,0 +1,44 @@
+
+= Seminar Rust
+
+04.12.2023 ESE Kongress 
+
+Tobias Schmitt-Lechner
+mit 
+Robert Nolte
+
+andrena objects
+
+== Zeitplan
+[cols="1,1"]
+|===
+|09:00 - 10:30
+|Teil 1 Auffrischen der Grundlegenden Rust-Kenntnisse
+|10:30 - 11:00 
+|Kaffeepause
+
+|11:00 - 12:30 
+|Teil 2 Web Services Einführung mit Tower, Axum & Tokio
+|12:30 - 13:30 
+|Mittagspause
+
+|13:30 - 15:00 
+|Teil 3 Web Services Fortsetzung, OpenAPI, Tonic
+|15:00 - 15:30 
+|Kaffeepause
+
+|15:30 - 17:00 
+|Multithreading & Synchronisationsmechanismen
+|===
+
+== Urls
+Repository Urls:
+[cols="1,1"]
+|===
+|Teil 1
+|https://github.com/robertnolteandrena/rust_recap
+|Teil 2-3
+|https://github.com/robertnolteandrena/axum_getting_started/ oder https://github.com/TobiasSL1/rust-threading-workshop
+|Teil 4
+|https://github.com/TobiasSL1/rust-threading-workshop/tree/main/part4
+|===

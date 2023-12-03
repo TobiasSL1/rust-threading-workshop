@@ -37,6 +37,10 @@ File src/main.rs
 include::0-hello-world/src/main.rs[]
 ----
 
+== Lets switch to english!
+
+From now on our seminar is in english :-)
+
 == Example: fast-feedback, have a fast feedback loop
 . http test utilities +
 https://crates.io/crates/httpc-test +
@@ -47,9 +51,9 @@ https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
 `cargo install cargo-watch` +
 
 
-. Lies die organisation von Integrationstests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
+. Read the organisation of integration tests: https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests
 
-. Öffne zwei Terminals: 
+. Start two terminals: 
 +
 --
 [source,sh]
@@ -64,31 +68,32 @@ include::1-fast-feedback/watchtest.sh[]
 Now you are ready for fast iterations.
 --
 
-== Die http crate
+== The http crate
 
-Die http crate https://docs.rs/http/latest/http/ is eine grundlegende crate für  
+The http crate https://docs.rs/http/latest/http/ is a commonly used library
+that includes definitions for 
 
 * HeaderValue
-* Namem für Header, z.B. `http::header::AUTHORIZATION`
+* names for headers, for example `http::header::AUTHORIZATION`
 
-Verwende die richtige Version: 0.2, nicht 1.0.0
+be sure to use the correct crate versions: 0.2, not 1.0.0
 `cargo add http@0.2`
 
-== Middleware zur Fehlerbehandlung
+== Middleware for error handling
 
-Erzeuge eine neues Projekt errorhandling-middleware
-In dieser Übung werden wir den asynchronen timeout einer Handerfunktion behandeln.
+Create a new project errorhandling-middleware
+In this exercise we will handle a async timeout of the handler function
 
-Zuerst fügen wir tower mit dem "timeout" Feature hinzu:
+first add tower, include "timeout" feature
 [source]
 cargo add tower -F timeout
 
-Axum Documentation:
+Axum documentation:
 https://docs.rs/axum/latest/axum/error_handling/index.html
 
-Beobachte, welche Arten von Timeouts berüchsichtigt werden (async, sync)
+Observe, what kind of timeouts are handled.
 
-Weitere Resourcen:
+Further resources:
 https://github.com/josecelano/axum-request-timeout
 
 == Middleware mit tower
@@ -164,17 +169,17 @@ map_response
 
 Layer 1 leitet den eingehenden Request direkt weiter und transformiert den Response des nächsten Layer oder Services.
 
-== Übung: State von middleware an die Handler übergeben
+== Exercise: Passing state from middleware to handlers:
 
 https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers
 
-Für den server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console
-Für den Client, verwenden wir die `request` crate mit Blocking requests, das ist etwas einfacher.
+For the server, extract the authorization header value and print it to console.
+For the client, we will use the `reqwest` library with blocking requests, with 
 
 `cargo add reqwest -F blocking`
 
 [NOTE] 
-Wenn man vergisst eine Extension hinzuzufügen, kommt es zu einem Runtime Fehler.
+If you forget to add the extension, you wil get a runtime error
 
 == OpenAPI & Swagger - Ein UI für unser Web API
 
@@ -247,6 +252,7 @@ Vorarbeit
 
 Am Ende können wir den Server laufen lassen
 `cargo run --bin helloworld-server`
+
 
 
 [appendix]
