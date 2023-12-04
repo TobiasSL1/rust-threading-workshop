@@ -63,12 +63,12 @@ https://dev.to/jorgecastro/hot-reload-in-rust-with-cargo-watch-5bon +
 --
 [source,sh]
 ----
-include::1-fast-feedback/watchserver.sh[]
+include::./1-fast-feedback/watchserver.sh[]
 ----
 and in the other terminal:
 [source,sh]
 ----
-include::1-fast-feedback/watchtest.sh[]
+include::./1-fast-feedback/watchtest.sh[]
 ----
 Jetzt bist du bereit für schnelle Iterationen.
 --
