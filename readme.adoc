@@ -38,7 +38,8 @@ Repository Urls:
 |Teil 1
 |https://github.com/robertnolteandrena/rust_recap
 |Teil 2-3
-|https://github.com/robertnolteandrena/axum_getting_started/ oder https://github.com/TobiasSL1/rust-threading-workshop
+|https://github.com/robertnolteandrena/axum_getting_started/ oder 
+Ordner "part2-3"
 |Teil 4
-|https://github.com/TobiasSL1/rust-threading-workshop/tree/main/part4
+|Ordner "part4"
 |===
