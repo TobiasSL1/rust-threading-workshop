@@ -1,7 +1,7 @@
 
-= Rust Seminar ESE 2023
+= Rust Training Installationshinweise
 
-Mo, 04.12.2023, Tobias Schmitt-Lechner, andrena objects
+Tobias Schmitt-Lechner, andrena objects
 
 == Installationshinweise
 

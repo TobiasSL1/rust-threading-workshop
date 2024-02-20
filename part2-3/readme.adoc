@@ -1,5 +1,5 @@
 
-
+:toc: left
 
 ifndef::backend-revealjs[:source-highlighter: rouge]
 :rouge-style: monokai

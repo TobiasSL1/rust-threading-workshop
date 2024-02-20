@@ -649,9 +649,38 @@ pre.rouge {
 }
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Axum Tutorial</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_einführung">Einführung</a></li>
+<li><a href="#_loslegen">Loslegen</a></li>
+<li><a href="#_beispiel_fast_feedback_eine_schnelle_feedback_schleife">Beispiel fast-feedback, eine schnelle Feedback-Schleife</a></li>
+<li><a href="#_die_http_crate">Die http crate</a></li>
+<li><a href="#_middleware_zur_fehlerbehandlung">Middleware zur Fehlerbehandlung</a></li>
+<li><a href="#_middleware_mit_tower">Middleware mit tower</a></li>
+<li><a href="#_middleware_request_mapping_mit_maprequest">Middleware Request Mapping mit MapRequest</a></li>
+<li><a href="#_middleware_response_mapping_mit_maprepsonse">Middleware Response Mapping mit MapRepsonse</a></li>
+<li><a href="#_übung_state_von_middleware_an_die_handler_übergeben">Übung: State von Middleware an die Handler übergeben</a></li>
+<li><a href="#_openapi_swagger_ein_ui_für_unser_web_api">OpenAPI &amp; Swagger - Ein UI für unser Web API</a>
+<ul class="sectlevel2">
+<li><a href="#_openapi_utoipa_hinzufügen">OpenAPI - utoipa hinzufügen</a></li>
+<li><a href="#_openapi_initialisierung">OpenAPI - Initialisierung</a></li>
+<li><a href="#_openapi">OpenAPI</a></li>
+</ul>
+</li>
+<li><a href="#_grpc">GRPC</a>
+<ul class="sectlevel2">
+<li><a href="#_tonic">Tonic</a></li>
+<li><a href="#_tonic_installation_linux">Tonic - Installation Linux</a></li>
+<li><a href="#_tonic_hello_world">Tonic - Hello World</a></li>
+</ul>
+</li>
+<li><a href="#_bibliography">Bibliography</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div class="sect1">
@@ -739,7 +768,7 @@ cargo add axum</code></pre>
 <p>http test utilities<br>
 <a href="https://crates.io/crates/httpc-test" class="bare">https://crates.io/crates/httpc-test</a><br>
 <code>cargo add httpc-test</code><br>
-oder mit Request<br>
+oder mit Reqwest<br>
 <code>cargo add reqwest</code></p>
 </li>
 <li>
@@ -748,7 +777,7 @@ oder mit Request<br>
 <code>cargo install cargo-watch</code><br></p>
 </li>
 <li>
-<p>Lies die organisation von Integrationstests: <a href="https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests" class="bare">https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests</a></p>
+<p>Lies die Organisation von Integrationstests: <a href="https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests" class="bare">https://doc.rust-lang.org/book/ch11-03-test-organization.html#integration-tests</a></p>
 </li>
 <li>
 <p>Öffne zwei Terminals:</p>
@@ -768,7 +797,7 @@ oder mit Request<br>
 </div>
 </div>
 <div class="paragraph">
-<p>Now you are ready for fast iterations.</p>
+<p>Jetzt bist du bereit für schnelle Iterationen.</p>
 </div>
 </div>
 </div>
@@ -949,14 +978,14 @@ Layer 1</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_übung_state_von_middleware_an_die_handler_übergeben">Übung: State von middleware an die Handler übergeben</h2>
+<h2 id="_übung_state_von_middleware_an_die_handler_übergeben">Übung: State von Middleware an die Handler übergeben</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers" class="bare">https://docs.rs/axum/latest/axum/middleware/index.html#passing-state-from-middleware-to-handlers</a></p>
 </div>
 <div class="paragraph">
-<p>Für den Server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console
-Für den Client, verwenden wir die <code>request</code> crate mit Blocking requests.</p>
+<p>Für den Server, extrahieren wir den Authorization Header Wert und schreiben ihn auf die Console.
+Für den Client, verwenden wir die <code>reqwest</code> crate mit Blocking requests.</p>
 </div>
 <div class="paragraph">
 <p><code>cargo add reqwest -F blocking</code></p>
@@ -1088,7 +1117,7 @@ cargo add --build tonic-build</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2023-12-03 20:07:23 +0100
+Last updated 2024-02-08 14:31:26 +0100
 </div>
 </div>
 </body>
