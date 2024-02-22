@@ -1,0 +1,47 @@
+
+= Rust Lecture DHBW 2024-02-23
+
+Tobias Schmitt-Lechner
+
+== Installation hints
+. The recommended solution is to have a native installation of linux (because of performance). Alternatively, use VMWare
+
+. On VMWare (Player), my configuration is kubuntu 22.04: +
+`cd ~/Desktop/vmware-tools-distro` +
+`sudo ./vmware-install.pl`
+
+. Install Chrome (optional, but faster) +
+`wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb` +
+`sudo dpkg -i google-chrome-stable_current_amd64.deb`
+
+. Install IDE
+* RustRover: Download toolbox at https://www.jetbrains.com/de-de/toolbox-app/ +
+  Unpack the file and start `jetbrains-toolbox` (in the subfolder)
+* or +
+Install Visual Studio Code (slow) +
+`sudo snap install --classic code` +
+Install Visual Studio code extension +
+`code --install-extension rust-lang.rust-analyzer`
+
+. Rust with Rustup +
+`sudo apt-get install curl`
++
+[NOTE]
+====
+do not use `sudo snap install curl`
+====
+`curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh` +
+`source "$HOME/.cargo/env"`
+
+. Install linker (otherwise, you will get "error: linker `cc` not found") +
+`sudo apt update && sudo apt install build-essential`
+
+. Optional: OpenSSL (otherwise for example, httpc-test doesn´t work) +
+`sudo apt install pkg-config` +
+`sudo apt install libssl-dev`
+
+. Check the installation +
+`cd ~` +
+`cargo new hello-world` +
+`cd hello-world` +
+`cargo run`
